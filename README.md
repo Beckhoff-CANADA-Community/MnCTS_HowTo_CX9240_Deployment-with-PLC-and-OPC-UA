@@ -102,3 +102,21 @@ If it's successful you should see and output similar to the following:
 ```bash
 sudo apt install tc31-xar-um -y
 ```
+
+End result should look similar to the image below. You should also now note that that "TC" Light on the front face of the CX9240 (previously off) is now Blue indicating that the system service is operating and in *Config Mode*. This light located directly below the PWR Indicator light.
+
+<img width="2168" height="1286" alt="image" src="https://github.com/user-attachments/assets/9b358730-dae4-4abc-b6ed-2a748a9abaac" />
+
+## Step 6: OPC UA Install
+To Install OPC UA we need to install the package from the package server. The second part of this command Punches through the firewall with the correct default port of 4840 used by OPC UA so that we don't get caught up later.
+
+```bash
+# Install OPC UA package - auto yes to all prompts
+sudo apt install tf6100-opc-ua-server -y
+
+# Punch through firewall for 4840 permanently & Restart Firewall application
+sudo mkdir -p /etc/nftables.conf.d
+echo 'table inet filter { chain input { tcp dport 4840 accept } }' | sudo tee /etc/nftables.conf.d/70-opcua.conf > /dev/null
+sudo systemctl restart nftables
+```
+
