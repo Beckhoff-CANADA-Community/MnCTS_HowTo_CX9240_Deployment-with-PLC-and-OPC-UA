@@ -3,7 +3,7 @@
 A MnCTS guide (pronounced "Mints") stands for Minimum number of Clicks to Success.
 It is designed to be a refreshing, user-interaction-optimised guide that takes you from ground zero to an operational state as smoothly and quickly as possible.
 
-MnTCS guides will always lean towards getting equipment up and running first, instead of the most complete implementation.
+MnTCS guides will always lean towards getting equipment up and running first, over the most complete implementation.
 
 Always refer to the appropriate relevant manuals for further details and complete instructions.
 
