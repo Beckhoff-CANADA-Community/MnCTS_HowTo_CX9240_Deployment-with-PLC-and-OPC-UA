@@ -54,7 +54,10 @@ The portable or standard versions will work\
  Once the imaging process is complete\
  Remove the microSD card, insert it into the CX9240\
  and power up the device.
- 
+
+>[!NOTE]
+ >You will be prompted that all data will be deleted, and additionally you may be warned about multiple partitions existing - this is normal for a Linux OS target.\
+ Say **Yes** to both warnings.
  <br>
  
  ## Step 3: Initial network access
