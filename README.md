@@ -67,7 +67,7 @@ The portable or standard versions will work\
 
 <br>
  
- ## Step 3: Initial network access
+ ## Step 3: Initial network address discovery
  Connect the CX9240 to a network with internet access.
  
  To help find the IP address, we can use the arp table but we first need to have hit the connection atleast once.
@@ -91,9 +91,11 @@ Get-NetNeighbor -AddressFamily IPv4 | Where-Object LinkLayerAddress -like '00-01
 
 This should return a filtered list of results where the MAC address matches the Beckhoff pool. Remember the MAC address is also printed on the Beckhoff Product sticker on the side of the controller. Port X001 will be incremented by hex + 1 if you are using this port, compared to X000 which is listed directly on the sticker.
 
-<img src="https://github.com/user-attachments/assets/8578f8a2-66d8-47e6-8265-b5027c570674" width="800" alt="Filtered results showing Beckhoff MAC address pool">
+<img width="1350" height="439" alt="image" src="https://github.com/user-attachments/assets/60479a3d-ebe2-4dbf-839f-ea0b7f4e376e" />
 
 <br><br>
+
+## Step 4: SSH Connection
 
 From **MobaXterm** (downloaded [here](https://mobaxterm.mobatek.net/download-home-edition.html)).
 1)  Start a new Session
@@ -108,7 +110,7 @@ From **MobaXterm** (downloaded [here](https://mobaxterm.mobatek.net/download-hom
 >If you have used this IP address for SSH in the past, you may be prompted with the following since you have a previously saved thumb print (digital ID) for the previous PC. <BR>
 > <img width="50%"  alt="image" src="https://github.com/user-attachments/assets/617ecfea-f525-4153-9fa5-7d7fcf1712e2" />
 
-## Step 4: Package Manager Authentication
+## Step 5: Package Manager Authentication
 Next we need to add the credentials for your myBeckhoff Account in order to connect to the package manager.
 Enter the following into the SSH terminal, you will be prompted for your username and password. 
 Afterwards the script will update the packages from the server.
@@ -138,7 +140,7 @@ apt update
 If successful you should see an output similar to the following:
 <img width="70%"  alt="image" src="https://github.com/user-attachments/assets/902da398-9a6b-4aa4-9105-5539b62224d9" />
 
-## Step 5: Install TwinCAT RT Linux
+## Step 6: Install TwinCAT RT Linux
 ```bash
 sudo apt install tc31-xar-um -y
 ```
@@ -147,7 +149,7 @@ End result should look similar to the image below. You should also now note that
 
 <img width="2168" height="1286" alt="image" src="https://github.com/user-attachments/assets/9b358730-dae4-4abc-b6ed-2a748a9abaac" />
 
-## Step 6: OPC UA Install
+## Step 7: OPC UA Install
 To Install OPC UA we need to install the package from the package server. The second part of this command punches through the firewall with the correct default port of 4840 used by OPC UA so that we don't get caught up later.
 
 ```bash
