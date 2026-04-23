@@ -214,4 +214,5 @@ If you are prompted to enable the boot project, set the check box to true. The P
 Now that the PLC is running, and the TMC file containing the OPC UA exporsure pragma is on the controller, it's time to finish the setup of the OPC UA server.
 
 ## Step 10: Finalize OPC UA Server Setup
+Follow the standard OPC UA setup from this point on.
 
