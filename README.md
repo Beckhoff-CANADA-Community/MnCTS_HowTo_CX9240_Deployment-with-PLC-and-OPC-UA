@@ -28,6 +28,13 @@ This guide was developed using the following test Fixturing
 </details>
 <br>  
 
+### Requirements
+- CX9240 ePC
+- Internet Access
+- MicroSD Card Reader
+
+<br>
+
 ## Step 1: Download the latest image
 
 Navigate to www.beckhoff.com/CX9240
