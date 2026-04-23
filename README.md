@@ -172,3 +172,46 @@ sudo systemctl reload nftables
 sudo nft list ruleset | grep -E "4840|dport"
 ```
 
+## Step 8: Initial Connection with TwinCAT IDE
+Now that we have the TwinCAT RT installed and operational, we also have a working ADS router that we can connect to.
+
+Start by opening the TwinCAT IDE, creating or opening a new TwinCAT project file (XML format).
+
+Add a new route, and broadcast search for the target. 
+
+>[!WARNING]
+>Ensure you add the route as secure, TwinCAT RT for Linux does not support non-secure ADS connections by default
+
+Default user: Administrator
+Default Pass: 1
+
+## Step 9: Licensing for PLC + OPC UA
+Add a PLC project
+
+Under "Properties for the PLC project, ensure that TMC file is transfered to the remote target. The OPC UA server uses this file as the lookup table for ADS symbols.
+
+Declare a PLC variable and expose it for access on OPC UA
+```bash
+	{attribute 'OPC.UA.DA' := '1' }
+	iTemp: INT;
+```
+
+Add some PLC code 
+
+```bash
+iTemp := iTemp + 1;
+```
+
+Under the System -> License\
+Ensure that TF6100 is listed under licenses, if not manually add it to the system by clicking the check box on the Manage tab.
+
+Activate the project.
+
+TwinCAT should go into run mode\
+
+If you are prompted to enable the boot project, set the check box to true. The PLC project needs to be in a running state for the OPC UA Server to read the Tag values over ADS. It's a common oversight to have the Runtime in RUN mode, but forget to set the PLC project to Autoboot.
+
+Now that the PLC is running, and the TMC file containing the OPC UA exporsure pragma is on the controller, it's time to finish the setup of the OPC UA server.
+
+## Step 10: Finalize OPC UA Server Setup
+
