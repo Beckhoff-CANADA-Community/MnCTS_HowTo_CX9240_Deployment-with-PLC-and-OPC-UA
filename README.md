@@ -207,7 +207,7 @@ Ensure that TF6100 is listed under licenses, if not manually add it to the syste
 
 Activate the project.
 
-TwinCAT should go into run mode\
+TwinCAT should go into **Run Mode**
 
 If you are prompted to enable the boot project, set the check box to true. The PLC project needs to be in a running state for the OPC UA Server to read the Tag values over ADS. It's a common oversight to have the Runtime in RUN mode, but forget to set the PLC project to Autoboot.
 
