@@ -115,8 +115,18 @@ To Install OPC UA we need to install the package from the package server. The se
 sudo apt install tf6100-opc-ua-server -y
 
 # Punch through firewall for 4840 permanently & Restart Firewall application
-sudo mkdir -p /etc/nftables.conf.d
-echo 'table inet filter { chain input { tcp dport 4840 accept } }' | sudo tee /etc/nftables.conf.d/70-opcua.conf > /dev/null
-sudo systemctl restart nftables
+sudo bash -c 'cat > /etc/nftables.conf.d/50-opcua.conf << EOF
+table inet filter {
+    chain input {
+        # accept TwinCAT OPC UA Server (TF6100)
+        tcp dport 4840 accept
+    }
+}
+EOF'
+# Reloads the firewall applicaiton to read in the new rules
+sudo systemctl reload nftables
+
+# Checks for open port
+sudo nft list ruleset | grep -E "4840|dport"
 ```
 
