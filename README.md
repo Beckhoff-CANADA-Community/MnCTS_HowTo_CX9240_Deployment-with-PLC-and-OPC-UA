@@ -1,6 +1,6 @@
 # Beckhoff CX9240 Linux ePC - MnCTS Setup Guide
 
-A MnCTS guide (pronounced *Mints*) is short for *Minimum number of Clicks To Success*. This is a refreshing user-interaction-optimised guide for getting from ground zero to an operational state as smoothly as possible.
+A MnCTS guide (pronounced *Mints*) is short for *Minimum number of Clicks To Success*. Is a refreshing user-interaction-optimised guide for getting from ground zero to an operational state as smoothly as possible.
 
 Focus will always lean towards getting equipment up and running first, instead of the most complete implementation.\
 
