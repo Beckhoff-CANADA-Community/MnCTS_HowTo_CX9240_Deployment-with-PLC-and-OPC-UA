@@ -1,15 +1,30 @@
 # Beckhoff CX9240 Linux ePC - MnCTS Setup Guide
-TwinCAT 3 + OPC UA Server
 
-A MnCTS guide (short for *Minimum number of Clicks To Success* - pronounced Mints), is a refreshing user-interaction-optimised guide for getting from ground zero to an operational state. Focus will lean towards getting equipment up and running first, instead of focusing on the most complete implementation. Always refer to the appropriate relevant manuals for further details.
+A MnCTS guide (pronounced *Mints*) is short for *Minimum number of Clicks To Success*. This is a refreshing user-interaction-optimised guide for getting from ground zero to an operational state as smoothly as possible.
 
-## Test Fixturing Disclosure
+Focus will always lean towards getting equipment up and running first, instead of the most complete implementation.\
+
+Always refer to the appropriate relevant manuals for further details and complete instructions.
+
+<br>
+
+## Purpose: 
+-  Setup a CX9240 with a new base image
+-  install TwinCAT 3 RT for Linux (PLC control)
+-  install OPC UA functionality and configure the firewall to allow operational access
+
+### Test Fixturing Disclosure
 This guide was developed using the following test Fixturing
--  TwinCAT IDE V3.1.4026.22
--  TwinCAT RT for Linux V3.1.4026.23
--  CX9240 ePC Image: V13 Build 306707 | Date: 10.04.2026
--  CX9240-0215
--  Hw: 1.1 | Date : 05/03/2025
+<details>
+  <Summary>Click to expand</Summary>
+  
+>-  TwinCAT IDE V3.1.4026.22
+>-  TwinCAT RT for Linux V3.1.4026.23
+>-  CX9240 ePC Image: V13 Build 306707 | Date: 10.04.2026
+>-  CX9240-0215
+>-  Hw: 1.1 | Date : 05/03/2025
+
+</details>
 <br>  
 
 ## Step 1: Download the latest image
@@ -17,7 +32,7 @@ This guide was developed using the following test Fixturing
 Navigate to www.beckhoff.com/CX9240
 
   Under **Software and Tools**; download the Beckhoff Linux RT (CX9240) image file
-  >[!NOTE]
+  >[!TIP]
   >You can try the following download link directly \
   >[Download Beckhoff TwinCAT Runtime / Linux package](https://www.beckhoff.com/en-ca/support/download-finder/search-result/?download_group=829549649)
 <br>
@@ -53,7 +68,7 @@ From an **elevated PowerShell**, run the following:
     Start-Process -WindowStyle Hidden ping -ArgumentList "-n 1 -w 100 192.168.1.$_" 
 }
 ```
->[!NOTE]
+>[!IMPORTANT]
 >The command above can take up to 1 minute to complete - be patient
 <br>
 
@@ -78,7 +93,7 @@ From **MobaXterm** (downloaded [here](https://mobaxterm.mobatek.net/download-hom
 6)  Click Ok
 <img width="848" height="527" alt="image" src="https://github.com/user-attachments/assets/cef264da-8afb-4bc6-ade3-02d4ef5a17af" />
 
->[!NOTE]
+>[!TIP]
 >If you have used this IP address for SSH in the past, you may be prompted with the following since you have a previously saved thumb print (digital ID) for the previous PC. <BR>
 > <img width="50%"  alt="image" src="https://github.com/user-attachments/assets/617ecfea-f525-4153-9fa5-7d7fcf1712e2" />
 
