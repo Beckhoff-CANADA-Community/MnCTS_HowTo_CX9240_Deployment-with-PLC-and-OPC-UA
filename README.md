@@ -26,7 +26,7 @@ This guide was developed using the following test Fixturing
 >-  Hw: 1.1 | Date : 05/03/2025
 
 </details>
-<br>  
+
 
 ### Requirements
 - CX9240 ePC
