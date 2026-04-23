@@ -1,4 +1,4 @@
-# Beckhoff CX9240 Linux ePC - MnCTS Setup Guide - TwinCAT RT + OPC UA Server
+# Beckhoff MnCTS Setup Guide | CX9240 Linux ePC w/TwinCAT RT & OPC UA Server
 
 A MnCTS guide (pronounced *Mints*) is short for *Minimum number of Clicks To Success*. Is a refreshing user-interaction-optimised guide for getting from ground zero to an operational state as smoothly as possible.
 
