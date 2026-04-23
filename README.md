@@ -1,1 +1,93 @@
-# HowTo_CX9240_Deployment-with-PLC-and-OPC-UA
+# Beckhoff Linux PC Setup Guide
+
+## Step 1: Download the latest image
+
+Navigate to www.beckhoff.com/CX9240
+
+  Under Software and Tools; download the Beckhoff Linux RT (CX9240) file
+  >[!NOTE]
+  >You can try the following download link directly \
+  >[Download Beckhoff TwinCAT Runtime / Linux package](https://www.beckhoff.com/en-ca/support/download-finder/search-result/?download_group=829549649)
+<br>
+  
+## Step 2: Deploy the Image to the microSD card
+Download the latest version of [Rufus](https://rufus.ie/en/) \
+The protable or standard verions will work\
+ Unzip the Beckhoff-RT-Linux_cx9240-arm64 file
+ 
+ Open Rufus, and with the microSD card inserted into a card reader
+ 1) Verify the destination
+ 2) Select the image you downloaded / unzipped
+ 3) Start the image process
+
+ <img width="50%" alt="image" src="https://github.com/user-attachments/assets/bfb19808-1a9e-42ba-b71c-df72c7fff9d9" />
+ 
+ Once the imaging process is complete\
+ Remove the microSD card, insert it into the CX9240\
+ and power up the CX9240.
+ 
+ <br>
+ 
+ ## Step 4: Setup the CX9240 with TwinCAT RT for Linux
+ Connect the CX9240 to a network with internet access.
+ 
+ To help find the IP address, we can use the arp table but we first need to have hit the connection atleast once.
+
+From an elevated PowerShell, run the following:
+```shell
+# ping all ports once in address span - replace the IP address with the first 3 octets of your network
+1..254 | ForEach-Object { 
+    Start-Process -WindowStyle Hidden ping -ArgumentList "-n 1 -w 100 192.168.1.$_" 
+}
+```
+>[!NOTE]
+>The command above can take up to 1 minute to complete - be patient
+<br>
+
+Now that we have hit all IP addresses in the pool we can filter the results with the following command
+```shell
+Get-NetNeighbor -AddressFamily IPv4 | Where-Object LinkLayerAddress -like '00-01-05*' 
+```
+
+This should return a filtered list of results where the MAC address matches the Beckhoff pool.
+
+<img src="https://github.com/user-attachments/assets/8578f8a2-66d8-47e6-8265-b5027c570674" width="800" alt="Filtered results showing Beckhoff MAC address pool">
+
+<br><br>
+
+**From MobaXterm** (download it [here](https://mobaxterm.mobatek.net/download-home-edition.html)).
+<img width="848" height="527" alt="image" src="https://github.com/user-attachments/assets/cef264da-8afb-4bc6-ade3-02d4ef5a17af" />
+
+>[!NOTE]
+>If you have used this IP address for SSH in the past, you may be prompted with the following since you have a previously saved thumb print (digital ID) for the previous PC. <BR>
+> <img width="50%"  alt="image" src="https://github.com/user-attachments/assets/617ecfea-f525-4153-9fa5-7d7fcf1712e2" />
+
+
+Next we need to add the credientials for your myBeckhoff Account in order to connect to the package manager.
+Enter the following into the SSH terminal, you will be prompted for your username and password. 
+Afterwards the script will update the packages from the server.
+
+```bash
+sudo bash -c '
+read -p "Enter your myBeckhoff email: " email
+read -s -p "Enter your myBeckhoff password: " pass
+echo
+cat > /etc/apt/auth.conf.d/bhf.conf << EOF
+machine deb.beckhoff.com
+login $email
+password $pass
+
+machine deb-mirror.beckhoff.com
+login $email
+password $pass
+EOF
+chown root:root /etc/apt/auth.conf.d/bhf.conf && chmod 600 /etc/apt/auth.conf.d/bhf.conf &&
+echo "Credentials file created. Running apt update..." &&
+apt update
+'
+```
+
+If it's successful you should see and output similar to the following:
+<img width="70%"  alt="image" src="https://github.com/user-attachments/assets/902da398-9a6b-4aa4-9105-5539b62224d9" />
+
+
