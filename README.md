@@ -1,18 +1,31 @@
-# Beckhoff Linux PC Setup Guide
+# Beckhoff CX9240 Linux ePC - MnCTS Setup Guide
+TwinCAT 3 + OPC UA Server
+
+A MnCTS guide (short for *Minimum number of Clicks To Success* - pronounced Mints), is a refreshing user-interaction-optimised guide for getting from ground zero to an operational state. Focus will lean towards getting equipment up and running first, instead of focusing on the most complete implementation. Always refer to the appropriate relevant manuals for further details.
+
+## Test Fixturing Disclosure
+This guide was developed using the following test Fixturing
+-  TwinCAT IDE V3.1.4026.22
+-  TwinCAT RT for Linux V3.1.4026.23
+-  CX9240 ePC Image: V13 Build 306707 | Date: 10.04.2026
+-  CX9240-0215
+-  Hw: 1.1 | Date : 05/03/2025
+<br>  
 
 ## Step 1: Download the latest image
 
 Navigate to www.beckhoff.com/CX9240
 
-  Under Software and Tools; download the Beckhoff Linux RT (CX9240) file
+  Under **Software and Tools**; download the Beckhoff Linux RT (CX9240) image file
   >[!NOTE]
   >You can try the following download link directly \
   >[Download Beckhoff TwinCAT Runtime / Linux package](https://www.beckhoff.com/en-ca/support/download-finder/search-result/?download_group=829549649)
 <br>
   
-## Step 2: Deploy the Image to the microSD card
+## Step 2: Deploy the Image
 Download the latest version of [Rufus](https://rufus.ie/en/) \
-The protable or standard verions will work\
+The portable or standard versions will work\
+
  Unzip the Beckhoff-RT-Linux_cx9240-arm64 file
  
  Open Rufus, and with the microSD card inserted into a card reader
@@ -24,7 +37,7 @@ The protable or standard verions will work\
  
  Once the imaging process is complete\
  Remove the microSD card, insert it into the CX9240\
- and power up the CX9240.
+ and power up the device.
  
  <br>
  
@@ -33,7 +46,7 @@ The protable or standard verions will work\
  
  To help find the IP address, we can use the arp table but we first need to have hit the connection atleast once.
 
-From an elevated PowerShell, run the following:
+From an **elevated PowerShell**, run the following:
 ```shell
 # ping all ports once in address span - replace the IP address with the first 3 octets of your network
 1..254 | ForEach-Object { 
@@ -44,12 +57,13 @@ From an elevated PowerShell, run the following:
 >The command above can take up to 1 minute to complete - be patient
 <br>
 
-Now that we have hit all IP addresses in the pool we can filter the results with the following command
+Now that we have hit all IP addresses in the pool with one ping, any that responded will be registed on the local arp table.
+We can now filter the results with the following command:
 ```shell
 Get-NetNeighbor -AddressFamily IPv4 | Where-Object LinkLayerAddress -like '00-01-05*' 
 ```
 
-This should return a filtered list of results where the MAC address matches the Beckhoff pool.
+This should return a filtered list of results where the MAC address matches the Beckhoff pool. Remember the MAC address is also printed on the Beckhoff Product sticker on the side of the controller. Port X001 will be incremented by hex + 1 if you are using this port, compared to X000 which is listed directly on the sticker.
 
 <img src="https://github.com/user-attachments/assets/8578f8a2-66d8-47e6-8265-b5027c570674" width="800" alt="Filtered results showing Beckhoff MAC address pool">
 
@@ -69,7 +83,7 @@ From **MobaXterm** (downloaded [here](https://mobaxterm.mobatek.net/download-hom
 > <img width="50%"  alt="image" src="https://github.com/user-attachments/assets/617ecfea-f525-4153-9fa5-7d7fcf1712e2" />
 
 ## Step 4: Package Manager Authentication
-Next we need to add the credientials for your myBeckhoff Account in order to connect to the package manager.
+Next we need to add the credentials for your myBeckhoff Account in order to connect to the package manager.
 Enter the following into the SSH terminal, you will be prompted for your username and password. 
 Afterwards the script will update the packages from the server.
 
@@ -95,7 +109,7 @@ apt update
 
 
 
-If it's successful you should see and output similar to the following:
+If successful you should see an output similar to the following:
 <img width="70%"  alt="image" src="https://github.com/user-attachments/assets/902da398-9a6b-4aa4-9105-5539b62224d9" />
 
 ## Step 5: Install TwinCAT RT Linux
@@ -103,18 +117,18 @@ If it's successful you should see and output similar to the following:
 sudo apt install tc31-xar-um -y
 ```
 
-End result should look similar to the image below. You should also now note that that "TC" Light on the front face of the CX9240 (previously off) is now Blue indicating that the system service is operating and in *Config Mode*. This light located directly below the PWR Indicator light.
+End result should look similar to the image below. You should also now note that that "TC" Light on the front face of the CX9240 (previously off) is now Blue indicating that the system service is operating and in *Config Mode*. This light is located directly below the PWR Indicator light.
 
 <img width="2168" height="1286" alt="image" src="https://github.com/user-attachments/assets/9b358730-dae4-4abc-b6ed-2a748a9abaac" />
 
 ## Step 6: OPC UA Install
-To Install OPC UA we need to install the package from the package server. The second part of this command Punches through the firewall with the correct default port of 4840 used by OPC UA so that we don't get caught up later.
+To Install OPC UA we need to install the package from the package server. The second part of this command punches through the firewall with the correct default port of 4840 used by OPC UA so that we don't get caught up later.
 
 ```bash
 # Install OPC UA package - auto yes to all prompts
 sudo apt install tf6100-opc-ua-server -y
 
-# Punch through firewall for 4840 permanently & Restart Firewall application
+# Punches through firewall for 4840 permanently & Restart Firewall application
 sudo bash -c 'cat > /etc/nftables.conf.d/50-opcua.conf << EOF
 table inet filter {
     chain input {
@@ -123,7 +137,7 @@ table inet filter {
     }
 }
 EOF'
-# Reloads the firewall applicaiton to read in the new rules
+# Reloads the firewall application to read in the new rules
 sudo systemctl reload nftables
 
 # Checks for open port
