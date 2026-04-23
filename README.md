@@ -28,7 +28,7 @@ The protable or standard verions will work\
  
  <br>
  
- ## Step 4: Setup the CX9240 with TwinCAT RT for Linux
+ ## Step 3: Initial network access
  Connect the CX9240 to a network with internet access.
  
  To help find the IP address, we can use the arp table but we first need to have hit the connection atleast once.
@@ -55,14 +55,20 @@ This should return a filtered list of results where the MAC address matches the 
 
 <br><br>
 
-**From MobaXterm** (download it [here](https://mobaxterm.mobatek.net/download-home-edition.html)).
+From **MobaXterm** (downloaded [here](https://mobaxterm.mobatek.net/download-home-edition.html)).
+1)  Start a new Session
+2)  Click SSH
+3)  Enter the IP address you found from the previous step
+4)  Check "Specify username"
+5)  Enter "Administrator"
+6)  Click Ok
 <img width="848" height="527" alt="image" src="https://github.com/user-attachments/assets/cef264da-8afb-4bc6-ade3-02d4ef5a17af" />
 
 >[!NOTE]
 >If you have used this IP address for SSH in the past, you may be prompted with the following since you have a previously saved thumb print (digital ID) for the previous PC. <BR>
 > <img width="50%"  alt="image" src="https://github.com/user-attachments/assets/617ecfea-f525-4153-9fa5-7d7fcf1712e2" />
 
-
+## Step 4: Package Manager Authentication
 Next we need to add the credientials for your myBeckhoff Account in order to connect to the package manager.
 Enter the following into the SSH terminal, you will be prompted for your username and password. 
 Afterwards the script will update the packages from the server.
@@ -87,7 +93,12 @@ apt update
 '
 ```
 
+
+
 If it's successful you should see and output similar to the following:
 <img width="70%"  alt="image" src="https://github.com/user-attachments/assets/902da398-9a6b-4aa4-9105-5539b62224d9" />
 
-
+## Step 5: Install TwinCAT RT Linux
+```bash
+sudo apt install tc31-xar-um -y
+```
