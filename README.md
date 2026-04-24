@@ -189,6 +189,8 @@ Default user: Administrator
 Default Pass: 1
 
 ## Step 9: Licensing for PLC + OPC UA
+Inside the TwinCAT IDE
+
 Add a PLC project
 
 Under "Properties for the PLC project, ensure that TMC file is transfered to the remote target. The OPC UA server uses this file as the lookup table for ADS symbols.
