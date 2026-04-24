@@ -195,6 +195,11 @@ Add a PLC project
 
 Under "Properties for the PLC project, ensure that TMC file is transfered to the remote target. The OPC UA server uses this file as the lookup table for ADS symbols.
 
+<img width="50%" alt="image" src="https://github.com/user-attachments/assets/67c6b299-f01a-4129-80f1-11a9ea42d9d4" />
+
+<br>
+<br>
+
 Declare a PLC variable and expose it for access on OPC UA
 ```bash
 	{attribute 'OPC.UA.DA' := '1' }
@@ -209,6 +214,10 @@ iTemp := iTemp + 1;
 
 Under the System -> License\
 Ensure that TF6100 is listed under licenses, if not manually add it to the system by clicking the check box on the Manage tab.
+
+<img width="50%" alt="image" src="https://github.com/user-attachments/assets/050e0769-765a-4d7f-be9a-f540be7c2ca6" />
+
+<br>
 
 Activate the project.
 
