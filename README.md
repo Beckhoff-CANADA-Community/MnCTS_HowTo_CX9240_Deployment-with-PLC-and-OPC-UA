@@ -116,6 +116,8 @@ Next we need to add the credentials for your myBeckhoff Account in order to conn
 Enter the following into the SSH terminal, you will be prompted for your username and password. 
 Afterwards the script will update the packages from the server.
 
+Copy the code below, then **Right Click** inside the MobaXterm window to paste the command into the SSH session.
+
 ```bash
 sudo bash -c '
 read -p "Enter your myBeckhoff email: " email
