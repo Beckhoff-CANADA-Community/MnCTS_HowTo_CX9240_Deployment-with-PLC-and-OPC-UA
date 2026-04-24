@@ -80,7 +80,8 @@ From an **elevated PowerShell**, run the following:
 }
 ```
 >[!IMPORTANT]
->The command above can take up to 1 minute to complete - be patient
+>The command above can take up to 1 minute to complete - be patient!
+>Your PC may experience some lag while the commands complete, this is expected behaviour.
 <br>
 
 Now that we have hit all IP addresses in the pool with one ping, any that responded will be registed on the local arp table.
