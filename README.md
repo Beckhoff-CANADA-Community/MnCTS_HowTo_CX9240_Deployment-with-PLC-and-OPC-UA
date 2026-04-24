@@ -226,7 +226,7 @@ TwinCAT should go into **Run Mode**
 
 If you are prompted to enable the boot project, set the check box to true. The PLC project needs to be in a running state for the OPC UA Server to read the Tag values over ADS. It's a common oversight to have the Runtime in RUN mode, but forget to set the PLC project to Autoboot.
 
-Now that the PLC is running, and the TMC file containing the OPC UA exporsure pragma is on the controller, it's time to finish the setup of the OPC UA server.
+Now that the PLC is running, and the TMC file containing the OPC UA exposure pragma is on the controller, it's time to finish the setup of the OPC UA server.
 
 ## Step 10: Finalize OPC UA Server Setup
 Follow the standard OPC UA setup from this point on.
