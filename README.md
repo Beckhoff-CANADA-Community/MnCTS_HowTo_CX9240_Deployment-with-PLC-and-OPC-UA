@@ -218,6 +218,7 @@ Ensure that TF6100 is listed under licenses, if not manually add it to the syste
 <img width="50%" alt="image" src="https://github.com/user-attachments/assets/050e0769-765a-4d7f-be9a-f540be7c2ca6" />
 
 <br>
+<br>
 
 Activate the project.
 
