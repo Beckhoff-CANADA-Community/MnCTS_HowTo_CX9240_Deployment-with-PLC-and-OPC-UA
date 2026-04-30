@@ -1,6 +1,6 @@
 # Beckhoff MnCTS Setup Guide <br> CX9240 Linux ePC w/TwinCAT RT & OPC UA Server
 
-A MnCTS guide (pronounced "Mints") stands for Minimum number of Clicks to Success.
+A MnCTS guide (pronounced "Mints") stands for Minimum number of Clicks to Success.\
 It is designed to be a refreshing, user-interaction-optimised guide that takes you from ground zero to an operational state as smoothly and quickly as possible.
 
 MnTCS guides will always lean towards getting equipment up and running first, over the most complete implementation.
