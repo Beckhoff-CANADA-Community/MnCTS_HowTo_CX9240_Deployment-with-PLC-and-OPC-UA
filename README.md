@@ -14,10 +14,12 @@ Always refer to the appropriate relevant manuals for further details and complet
 -  install TwinCAT 3 RT for Linux (PLC control)
 -  install OPC UA functionality and configure the firewall to allow operational access
 
+<br>
+
 ### Test Fixturing Disclosure
-	This guide was developed using the following test Fixturing
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;This guide was developed using the following test Fixturing
 <details>
-  <Summary>Click to expand</Summary>
+  <Summary>&nbsp;&nbsp;&nbsp;&nbsp;Click to expand</Summary>
   
 >-  TwinCAT IDE V3.1.4026.22
 >-  TwinCAT RT for Linux V3.1.4026.23
@@ -26,7 +28,7 @@ Always refer to the appropriate relevant manuals for further details and complet
 >-  Hw: 1.1 | Date : 05/03/2025
 
 </details>
-
+<br>
 
 ### Requirements
 - CX9240 ePC
