@@ -15,7 +15,7 @@ Always refer to the appropriate relevant manuals for further details and complet
 -  install OPC UA functionality and configure the firewall to allow operational access
 
 ### Test Fixturing Disclosure
-This guide was developed using the following test Fixturing
+	This guide was developed using the following test Fixturing
 <details>
   <Summary>Click to expand</Summary>
   
