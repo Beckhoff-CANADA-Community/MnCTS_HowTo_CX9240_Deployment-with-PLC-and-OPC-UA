@@ -49,7 +49,7 @@ Navigate to www.beckhoff.com/CX9240
   
 ## Step 2: Deploy the Image
 Download the latest version of [Rufus](https://rufus.ie/en/) \
-The portable or standard versions will work\
+The portable or standard versions will work
 
  Unzip the Beckhoff-RT-Linux_cx9240-arm64 file
  
